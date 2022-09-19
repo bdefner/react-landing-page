@@ -9,6 +9,13 @@ const navBarStyles = css`
   padding: 32px 44px 32px 44px;
   transition: all 0.5s ease;
 
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
   nav {
     display: flex;
     gap: 8px;
@@ -78,24 +85,33 @@ const heroSectionStyles = css`
 `;
 
 const buttonStyles = css`
+  text-decoration: none;
   font-size: 17px;
-  font-weight: bold;
+  font-weight: 600;
   color: white;
-  padding: 0.5em 1.5em;
   border: solid 0px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
-  transition: all 0.5 ease;
 
   div {
-    padding: 0.5em 1.5em;
+    padding: 10px 20px 10px 20px;
     border: solid 0px;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 1.5s ease;
+
+    &:hover {
+      background: var(--gradient-discrete);
+    }
   }
   .highlight {
     background: var(--gradient1);
+    transition: all 1s ease-out;
+    &:hover {
+      background: var(--gradient2);
+      transition: all 1s ease-out;
+    }
   }
 `;
 
@@ -104,15 +120,21 @@ function App() {
     <div>
       <div css={navBarStyles}>
         <div>
-          <a href="index.html">
-            <img src="./public/logo.png" alt="Clover Logo" />
-            <img src="./public/logo-text.png" alt="Clover logo text" />
+          <a className="logo-wrap" href="index.html">
+            <img src={require('./logo.png')} alt="Clover Logo" />
+            <img src={require('./logo-text.png')} alt="Clover logo text" />
           </a>
         </div>
         <nav>
-          <button css={buttonStyles}>Pricing</button>
-          <button css={buttonStyles}>Log in</button>
-          <button css={buttonStyles}>Get Started</button>
+          <a css={buttonStyles}>
+            <div>Pricing</div>
+          </a>
+          <a css={buttonStyles}>
+            <div>Log in</div>
+          </a>
+          <a css={buttonStyles}>
+            <div className="highlight">Get Started</div>
+          </a>
         </nav>
       </div>
       <main>
