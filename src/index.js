@@ -28,7 +28,7 @@ root.render(
           --red: 230, 29, 91;
           --teal: 9, 186, 198;
           --light-blue: 17, 198, 255;
-          --grey: 127, 128, 128;
+          --grey: #86878a;
           --font-family: 'Inter var', -apple-system, BlinkMacSystemFont,
             'Open Sans', sans-serif;
           --display-font-family: 'InterDisplay var', -apple-system,
@@ -65,6 +65,33 @@ root.render(
         *::before,
         *::after {
           box-sizing: border-box;
+          font-weight: 500;
+        }
+
+        h4 {
+          text-transform: uppercase;
+          color: #fefefe;
+          letter-spacing: 0.2rem;
+        }
+
+        .giant-h2 {
+          font-size: 100px;
+          font-family: var(--display-font-family);
+          font-weight: 900;
+          text-align: center;
+          background: var(--gradient-text1);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          margin: 23px 0 23px 0;
+          line-height: 1.2em;
+        }
+
+        .big-paragraph {
+          font-weight: 600;
+          line-height: 1.4em;
+          font-size: 24px;
+          max-width: 750px;
         }
 
         body {
@@ -73,7 +100,6 @@ root.render(
           color: white;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
             Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-          overflow: hidden;
           font-size: 16px;
         }
       `}
