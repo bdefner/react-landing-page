@@ -11,6 +11,9 @@ root.render(
   <React.StrictMode>
     <Global
       styles={css`
+        * {
+          box-sizing: border-box;
+        }
         :root {
           --black: #0e1115;
           --black-pure: 0, 0, 0;
@@ -85,6 +88,11 @@ root.render(
           -webkit-text-fill-color: transparent;
           margin: 23px 0 23px 0;
           line-height: 1.2em;
+
+          & .force-left-align {
+            text-align: left;
+            align-items: left;
+          }
         }
 
         .big-paragraph {
@@ -92,6 +100,11 @@ root.render(
           line-height: 1.4em;
           font-size: 24px;
           max-width: 750px;
+        }
+
+        .force-left-align {
+          text-align: left;
+          align-items: left;
         }
 
         body {

@@ -219,6 +219,138 @@ const cardWrap = css`
   }
 `;
 
+const columnWrapStyles = css`
+  display: flex;
+  flex-wrap: row;
+
+  .column-70% {
+    min-width: 70%;
+  }
+  .column-30% {
+    min-width: 30%;
+    &.flex-column {
+      display: flex;
+      flex-direction: column;
+    }
+    &.card {
+      width: 50%;
+    }
+  }
+
+  .flex-row {
+    margin-top: 100px;
+  }
+
+  .card {
+    width: 50%;
+  }
+
+  #task-phone-image {
+    width: 350px;
+    position: relative;
+    left: 100px;
+    z-index: 2;
+    transform: rotate(0.02turn);
+  }
+`;
+
+const quoteWrap = css`
+  background-image: var(--gradient1);
+  padding: 20px;
+
+  #quote-box {
+    background-color: var(--black);
+    overflow: hidden;
+    padding: 25px 100px 25px 100px;
+
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    & > p {
+      font-size: 32px;
+      font-weight: 800;
+      max-width: 700px;
+    }
+
+    #quote-author-wrap {
+      display: flex;
+      margin-bottom: 32px;
+    }
+
+    #quote-author {
+      margin-left: 20px;
+      & > span {
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      & > p {
+        font-size: 16px;
+        margin: 0px;
+      }
+    }
+  }
+`;
+
+const tabletAppDemoStyles = css`
+  width: 100%;
+  min-height: 80vh;
+
+  #ipad-wrap {
+    height: 700px;
+    width: 900px;
+    border: solid 3px;
+    border-radius: 15px;
+    border-color: #6a6a6c;
+    position: relative;
+    z-index: 3;
+    padding: 25px;
+    overflow: hidden;
+    background-color: black;
+  }
+
+  #ipad-screen {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 25px;
+    overflow: scroll;
+    display: flex;
+  }
+
+  #ipad-canvas {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333;
+
+    & input {
+      border: none;
+    }
+
+    .input-heading {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+
+    .text-area {
+      font-size: inherit;
+      padding: 1px 6px;
+      resize: both;
+      min-height: 40px;
+      line-height: 20px;
+      border: none;
+      background-color: green;
+      background: green;
+    }
+  }
+`;
+
 function App() {
   return (
     <div>
@@ -342,8 +474,8 @@ function App() {
                 <h4>Infinite Canvas</h4>
                 <p>
                   Network your ideas together. Link to other pages or deep link
-                  to specific blocks and Clover will automatically add backlinks
-                  to connect the pages.
+                  to specific blocks and Clover will automatically add back
+                  links to connect the pages.
                 </p>
               </div>
             </div>
@@ -351,15 +483,130 @@ function App() {
         </section>
         <section css={containerWrapStyle}>
           <div className="container section-padding">
-            <div className="quote-wrap">
-              <p>
-                I can’t tell you what an impact this app has made on my creative
-                life. Everything I do starts in Clover now.
-              </p>
-              <div>
-                <img src={require('./neilprice.jpeg')} alt="" />
-                <div>Neil Price</div>
-                <div>Illustrator – Harry Potter, Dreamworks, etc</div>
+            <div css={quoteWrap}>
+              <div id="quote-box">
+                <p>
+                  I can't tell you what an impact this app has made on my
+                  creative life. Everything I do starts in Clover now.
+                </p>
+                <div id="quote-author-wrap">
+                  <img src={require('./neilprice.jpeg')} alt="" />
+                  <div id="quote-author">
+                    <span>Neil Price</span>
+                    <p>Illustrator – Harry Potter, Dream works, etc</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section css={containerWrapStyle}>
+          <div className="container section-padding">
+            <div css={columnWrapStyles}>
+              <div className="column-70% flex-column">
+                <div className="force-left-align">
+                  <h4>Daily Planner and Task Manager</h4>
+                  <h2 className="giant-h2 force-left-align">
+                    Plan your day.
+                    <br />
+                    Stay on task.
+                  </h2>
+                  <p className="big-paragraph">
+                    Clover is more than a great note-taking tool. It's also a
+                    fully-fledged task manager and daily planner. Manage your
+                    work from beginning to end with a single tool.
+                  </p>
+                  <div className="flex-row" css={cardWrap}>
+                    <div className="card">
+                      <img
+                        className="icon"
+                        src={require('./icon7.png')}
+                        alt=""
+                      />
+                      <h4>Manage Projects</h4>
+                      <p>
+                        Inline tasks make it simple to manage projects large and
+                        small. Add due dates, color-coding, and status all
+                        alongside your notes.
+                      </p>
+                    </div>
+                    <div className="card">
+                      <img
+                        className="icon"
+                        src={require('./icon8.png')}
+                        alt=""
+                      />
+                      <h4>Daily Planner</h4>
+                      <p>
+                        Use Clover’s Daily Notes to plan tasks and capture
+                        thoughts throughout your day. Incomplete tasks
+                        automatically rollover to the next day7
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="column-30%">
+                <img
+                  src={require('./task-phone.png')}
+                  alt=""
+                  id="task-phone-image"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section css={containerWrapStyle}>
+          <div className="container section-padding">
+            <div css={quoteWrap}>
+              <div id="quote-box">
+                <p>
+                  I'm absolutely obsessed with @cloverappco. A completely
+                  flexible cloud workspace, a wild freeform canvas, a supremely
+                  effective workflow visualiser…
+                </p>
+                <div id="quote-author-wrap">
+                  <img src={require('./williams.jpg')} alt="" />
+                  <div id="quote-author">
+                    <span>Owen Williams</span>
+                    <p>Managing Director at Siml</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section css={containerWrapStyle}>
+          <div className="container section-padding section-center">
+            <h4>Command your Productivity</h4>
+            <h2 className="giant-h2">
+              Work faster. <br />
+              Stay in flow.
+            </h2>
+            <p className="big-paragraph">
+              Clover is designed to be as streamlined as possible. The Quick
+              Prompt allows you to perform common actions with a simple
+              keystroke. The Clover Desktop app lets you set a global keyboard
+              shortcut so you can add to your Daily Notes without even pulling
+              up the app.
+            </p>
+          </div>
+        </section>
+        <section css={containerWrapStyle}>
+          <div className="container section-padding">
+            <div css={tabletAppDemoStyles}>
+              <div id="ipad-wrap">
+                <div id="ipad-screen">
+                  <div id="ipad-canvas">
+                    <input className="input-heading" value="Inspiration" />
+                    <textarea
+                      className="input-paragraph"
+                      value="These are my favorite spots around the city"
+                    />
+                  </div>
+                </div>
+                {/* <img id="ipad-frame" src={require('./ipad-frame.png')} alt="" /> */}
               </div>
             </div>
           </div>
