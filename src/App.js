@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { useState } from 'react';
 
 const containerWrapStyle = css`
   width: 100vw;
@@ -170,10 +171,15 @@ const showRoomSectionStyles = css`
     margin-left: 50px;
   }
   #showRoomPhoneWrap {
-    height: 600px;
+    height: 550px;
+    width: auto;
     position: relative;
     right: 120px;
     z-index: 2;
+  }
+
+  #showRoomPhoneWrap > img {
+    width: auto;
   }
 `;
 
@@ -298,25 +304,55 @@ const quoteWrap = css`
 const tabletAppDemoStyles = css`
   width: 100%;
   min-height: 80vh;
+  display: flex;
+
+  #apple-pencil {
+    height: 500px;
+    position: relative;
+    right: 25vw;
+    z-index: 3;
+    transform: rotate(0.01turn);
+  }
+
+  .palette-wrap {
+    padding: 14px;
+    background-color: white;
+    position: absolute;
+    z-index: 5;
+  }
+
+  .palette {
+    display: flex;
+    &.color-selector {
+      padding: 5px;
+      border-radius: 50%;
+    }
+    &#color-1 {
+      background-color: var(--highlight-color1);
+    }
+  }
 
   #ipad-wrap {
     height: 700px;
     width: 900px;
     border: solid 3px;
-    border-radius: 15px;
+    border-radius: 45px;
     border-color: #6a6a6c;
     position: relative;
     z-index: 3;
     padding: 25px;
     overflow: hidden;
     background-color: black;
+    left: -400px;
+    transform: rotate(-0.03turn);
   }
 
   #ipad-screen {
     width: 100%;
     height: 100%;
+    border-radius: 14px;
     background-color: white;
-    padding: 25px;
+    padding: 0px;
     overflow: scroll;
     display: flex;
   }
@@ -350,6 +386,125 @@ const tabletAppDemoStyles = css`
     }
   }
 `;
+
+function IpadAppDemo(props) {
+  const [headings, setHeadings] = useState('Inspirations');
+  const [textarea, setTextarea] = useState(
+    'Putting your ideas on digital sticky notes, will change the way you work forever!',
+  );
+  const [highlightColor, setHighlightColor] = useState('#fed766');
+  const [nightMode, setNightMode] = useState(false);
+
+  return (
+    <div
+      css={() => css`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+          padding: 25px;
+          max-width: 50%;
+        }
+
+        div > img {
+          padding: 5px;
+          max-width: 100%;
+          height: 25px;
+        }
+
+        #menu {
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+          border: solid 1px var(--grey);
+          margin-bottom: 25px;
+          position: sticky;
+          top: 0px;
+          background-color: white;
+        }
+
+        textarea {
+          background-color: green;
+          color: white;
+          border: none;
+          padding: 5px;
+          min-height: 100px;
+        }
+        .color-selector {
+          padding: 4px;
+          border-radius: 50%;
+          height: 15px;
+          width: 15px;
+          margin: 6px;
+        }
+        button {
+        }
+      `}
+    >
+      <div id="menu">
+        <div>
+          <img src={require('./icons8-sun.png')} alt="" />
+        </div>
+        <div>
+          <img src={require('./icons8-moon.png')} alt="" />
+        </div>
+        <div
+          className="color-selector"
+          css={css`
+            background-color: #fe4a49;
+          `}
+        />
+        <div
+          className="color-selector"
+          css={css`
+            background-color: #2ab7ca;
+          `}
+        />
+        <div
+          className="color-selector"
+          css={css`
+            background-color: #fed766;
+          `}
+        />
+        <div>
+          <img src={require('./icons8-1.png')} alt="" />
+        </div>
+        <div>
+          <img src={require('./icons8-2.png')} alt="" />
+        </div>
+        <div>
+          <img src={require('./icons8-3.png')} alt="" />
+        </div>
+        <div>
+          <img src={require('./icons8-4.png')} alt="" />
+        </div>
+        <div>
+          <img src={require('./icons8-5.png')} alt="" />
+        </div>
+      </div>
+      <input
+        className="input-heading"
+        value={headings}
+        onChange={(event) => {
+          setHeadings(event.currentTarget.value);
+        }}
+      />
+      <textarea
+        className="input-paragraph"
+        value={textarea}
+        onChange={(event) => setTextarea(event.currentTarget.value)}
+      />
+      <img src={require('./ipad-images.png')} alt="" />
+      <textarea
+        className="input-paragraph"
+        value={textarea}
+        onChange={(event) => setTextarea(event.currentTarget.value)}
+      />
+      <img src={require('./ipad-images.png')} alt="" />
+    </div>
+  );
+}
 
 function App() {
   return (
@@ -599,15 +754,15 @@ function App() {
               <div id="ipad-wrap">
                 <div id="ipad-screen">
                   <div id="ipad-canvas">
-                    <input className="input-heading" value="Inspiration" />
-                    <textarea
-                      className="input-paragraph"
-                      value="These are my favorite spots around the city"
-                    />
+                    <IpadAppDemo />
                   </div>
                 </div>
-                {/* <img id="ipad-frame" src={require('./ipad-frame.png')} alt="" /> */}
               </div>
+              <img
+                id="apple-pencil"
+                src={require('./apple-pencil.png')}
+                alt=""
+              />
             </div>
           </div>
         </section>

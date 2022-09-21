@@ -63,6 +63,11 @@ root.render(
           --font-size1: 1rem;
           --font-size2: 1.4rem;
           --font-size3: 2rem;
+          --highlight-color1: #fe4a49;
+          --highlight-color2: #2ab7ca;
+          --highlight-color3: #fed766;
+          --highlight-color4: #548687;
+          --highlight-color5: #473335;
         }
         *,
         *::before,
