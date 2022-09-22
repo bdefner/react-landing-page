@@ -1,6 +1,9 @@
+import 'animate.css/animate.min.css';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState } from 'react';
+import Fade from 'react-reveal/Fade';
+import Rotate from 'react-reveal/Rotate';
 
 const containerWrapStyle = css`
   width: 100vw;
@@ -63,12 +66,6 @@ const navBarStyles = css`
   }
 `;
 
-const testStyle = css`
-  padding: 100px;
-  background-color: white;
-  min-height: 100vh;
-`;
-
 const heroSectionStyles = css`
   min-height: 80vh;
   display: flex;
@@ -129,13 +126,18 @@ const buttonStyles = css`
   border: solid 0px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0);
+  transition: background-color 1000ms;
+  -moz-transition: all 1s linear; /* Firefox 4 */
+  -webkit-transition: all 1000ms linear; /* Safari 和 Chrome */
 
   div {
     padding: 10px 20px 10px 20px;
     border: solid 0px;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 1.5s ease;
+    transition: background-color 1000ms;
+    -moz-transition: all 1s linear; /* Firefox 4 */
+    -webkit-transition: all 1000ms linear; /* Safari 和 Chrome */
 
     &:hover {
       background: var(--gradient-discrete);
@@ -506,7 +508,21 @@ function IpadAppDemo(props) {
   );
 }
 
+function StyledButton(props) {
+  return (
+    <a css={buttonStyles}>
+      <div className={props.className}>{props.text}</div>
+    </a>
+  );
+}
+
 function App() {
+  // function useLayoutEffect(() => {
+  //   window.addEventListener('scroll', onScroll);
+
+  //   return () => window.removeEventListener('scroll', onScroll);
+  // }, []);
+
   return (
     <div>
       <div css={navBarStyles}>
@@ -517,15 +533,9 @@ function App() {
           </a>
         </div>
         <nav>
-          <a css={buttonStyles}>
-            <div>Pricing</div>
-          </a>
-          <a css={buttonStyles}>
-            <div>Log in</div>
-          </a>
-          <a css={buttonStyles}>
-            <div className="highlight">Get Started</div>
-          </a>
+          <StyledButton text="Pricing" />
+          <StyledButton text="Log in" />
+          <StyledButton text="Get Started" className="highlight" />
         </nav>
       </div>
       <main>
@@ -539,9 +549,7 @@ function App() {
             Clover is a digital notebook that blends notes, tasks, whiteboards,
             and a daily planner into one streamlined app.
           </h2>
-          <a css={buttonStyles}>
-            <div className="highlight">Get started for Free</div>
-          </a>
+          <StyledButton text="Get started for Free" className="highlight" />
           <div className="more-info-wrap">
             <a>Product Hunt's Tool of the Year (Design).</a>
             <p>Available on Mac, Windows, iPad, iPhone, and the web.</p>
@@ -549,11 +557,15 @@ function App() {
         </section>
         <section css={containerWrapStyle}>
           <div className="wide-container" css={showRoomSectionStyles}>
-            <div id="showRoomTabletWrap">
-              <img src={require('./desktop-light-1.png')} alt="" />
-            </div>
+            <Fade bottom>
+              <div id="showRoomTabletWrap">
+                <img src={require('./desktop-light-1.png')} alt="" />
+              </div>
+            </Fade>
             <div id="showRoomPhoneWrap">
-              <img src={require('./phone-daily.png')} alt="" />
+              <Fade bottom>
+                <img src={require('./phone-daily.png')} alt="" />
+              </Fade>
             </div>
           </div>
         </section>
@@ -703,11 +715,13 @@ function App() {
               </div>
 
               <div className="column-30%">
-                <img
-                  src={require('./task-phone.png')}
-                  alt=""
-                  id="task-phone-image"
-                />
+                <Fade right>
+                  <img
+                    src={require('./task-phone.png')}
+                    alt=""
+                    id="task-phone-image"
+                  />
+                </Fade>
               </div>
             </div>
           </div>
@@ -751,13 +765,16 @@ function App() {
         <section css={containerWrapStyle}>
           <div className="container section-padding">
             <div css={tabletAppDemoStyles}>
-              <div id="ipad-wrap">
-                <div id="ipad-screen">
-                  <div id="ipad-canvas">
-                    <IpadAppDemo />
+              <Rotate bottom right>
+                <div id="ipad-wrap">
+                  <div id="ipad-screen">
+                    <div id="ipad-canvas">
+                      <IpadAppDemo />
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Rotate>
+
               <img
                 id="apple-pencil"
                 src={require('./apple-pencil.png')}
